@@ -9,6 +9,10 @@ function App({name, age}) {
   const [count, setCount] = useState(0);
   const [vis, setVis] = useState(true);
 
+  const [posts, setPosts] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   function Counter() {
     setCount(count + 1);
   }
@@ -17,11 +21,35 @@ function App({name, age}) {
     setVis(!vis);
   }
 
+
   useEffect( () => {
-    console.log("Пшел нахуй")
-  })
+    const fetchPosts = async () => {
+      try {
+        setLoading(true);
+        const response = await fetch('https://jsonplaceholder.typicode.com/posts?_limit=6')
 
 
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        setPosts(data);
+      }
+
+      catch (err) {
+        setError(err.message);
+      } finally {
+        setLoading(false);
+      }
+    }
+    fetchPosts();
+  }, []);
+  
+
+  if (loading) return <div>Загрузка...</div>;
+  if (error) return <div>Ошибка: {error}</div>;
 
   return (
     <>
@@ -69,11 +97,19 @@ function App({name, age}) {
           <p>Хуета</p>
         )}
 
-
+        <h1>Посты</h1>
+        {posts.slice(0, 5).map(post => (
+          <div key={post.id} style={{ border: '1px solid #ccc', margin: '10px', padding: '10px' }}>
+            <h3>{post.title}</h3>
+            <p>{post.body}</p>
+          </div>
+        ))}
       </body>
 
     </>
   )
+
+  
 
   
 }
