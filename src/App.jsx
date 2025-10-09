@@ -94,7 +94,7 @@ function App({name, age}) {
         </button>
 
         {vis && (
-          <p>Хуета</p>
+          <p>Хуетень</p>
         )}
 
         <h1>Посты</h1>
