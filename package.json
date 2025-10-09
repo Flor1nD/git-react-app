@@ -2,7 +2,7 @@
   "name": "git-react-app",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://github.com/Flor1nD/git-react-app.git",
+  "homepage": "https://github.com/Flor1nD/git-react-app",
   "type": "module",
   "scripts": {
     "dev": "vite",
