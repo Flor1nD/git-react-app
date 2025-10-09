@@ -19,6 +19,10 @@ function App({name, age}) {
 
 
 
+  useEffect(() => {
+    console.log("Хуй")
+  })
+
 
 
   return (
