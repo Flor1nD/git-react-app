@@ -91,43 +91,43 @@ function App({name, age}) {
           </button>
         </p>
 
-        {vis && (
-          <p>Хуетень</p>
-        )}
+
 
 
         <button onClick={setPost} disabled={loading}>
           {loading ? 'Загрузка...' : 'Загрузить посты'}
         </button>
 
-        {error && 
-        <div style={{ color: 'red' }}>
-          Ошибка: {error}
-        </div>
-        }
 
-        <h1>Посты ({posts.length})</h1>
-        
-        {posts.length > 0 && 
-        (
-          <div>
-            {posts.slice(0, 8).map(post => (
-              <div key={post.id} style={{ border: '1px solid  #ccc', margin: '10px', padding: '10px' }}>
-                <h3>{post.title}</h3>
-                <p>{post.body}</p>
-              </div>
-            ))}
-          </div>
+
+
+
+        {vis && (
+            <h1>Посты ({posts.length})</h1>
         )}
+
+        {vis && error && (
+            <div style={{ color: 'red' }}>
+                Ошибка: {error}
+            </div>
+        )}
+
+        {vis && (posts.length > 0) &&
+            (
+                <div>
+                    {posts.slice(0, 8).map(post => (
+                        <div key={post.id} style={{ border: '1px solid  #ccc', margin: '10px', padding: '10px' }}>
+                            <h3>{post.title}</h3>
+                            <p>{post.body}</p>
+                        </div>
+                    ))}
+                </div>
+            )}
 
       </body>
 
     </>
   )
-
-  
-
-  
 }
 
 export default App
